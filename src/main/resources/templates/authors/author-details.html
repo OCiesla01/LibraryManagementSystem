@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/997cce5b03.js" crossorigin="anonymous"></script>
+  <title>Library Management System</title>
+</head>
+<body>
+<div class="container mt-3">
+  <h2 th:text="${authorFullName}" class="mt-3"></h2>
+  <table class="table table-striped mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>Country</th>
+        <th>Date of Birth</th>
+        <th>Date of Death</th>
+<!--        <th>Award & Recognitions</th>-->
+        <th>Books</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr>
+        <td th:text="${author.origin}"></td>
+        <td th:text="${author.dateOfBirth}"></td>
+        <td>
+          <span th:if="${author.dateOfDeath != null}">
+            <p th:text="${author.dateOfDeath}"></p>
+          </span>
+          <span th:unless="${author.dateOfDeath != null}">
+            <p>None</p>
+          </span>
+        </td>
+        <!--    <h4 th:text="${author.awardAndRecognition}"></h4>-->
+        <td th:each="book : ${author.books}">
+          <p th:text="${book}"></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div th:text="${author.biography}">
+
+  </div>
+  <a th:href="@{/authors/list}" class="btn btn-warning mt-3">Back to Authors List</a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

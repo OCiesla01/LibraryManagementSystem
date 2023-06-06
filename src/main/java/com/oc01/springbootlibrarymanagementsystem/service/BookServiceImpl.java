@@ -11,8 +11,13 @@ import java.util.Optional;
 @Service
 public class BookServiceImpl implements BookService {
 
-    @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private BookServiceImpl(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
     @Override
     public List<Book> findAll() {
         return bookRepository.findAllByOrderByTitleAsc();

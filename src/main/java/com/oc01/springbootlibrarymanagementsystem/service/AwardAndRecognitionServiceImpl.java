@@ -11,8 +11,13 @@ import java.util.Optional;
 @Service
 public class AwardAndRecognitionServiceImpl implements AwardAndRecognitionService {
 
-    @Autowired
     private AwardAndRecognitionRepository awardAndRecognitionRepository;
+
+    @Autowired
+    private AwardAndRecognitionServiceImpl(AwardAndRecognitionRepository awardAndRecognitionRepository) {
+        this.awardAndRecognitionRepository = awardAndRecognitionRepository;
+    }
+
     @Override
     public List<AwardAndRecognition> findAll() {
         return awardAndRecognitionRepository.findAll();

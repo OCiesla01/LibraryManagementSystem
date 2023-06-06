@@ -23,12 +23,6 @@ CREATE TABLE library_system_user (
     FOREIGN KEY (role_id) REFERENCES roles (role_id)
 )AUTO_INCREMENT=1;
 
-CREATE TABLE awards_and_recognitions (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    date_granted DATE
-)AUTO_INCREMENT=1;
-
 CREATE TABLE author (
     id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
@@ -40,6 +34,14 @@ CREATE TABLE author (
     total_books INT,
     is_deleted BOOLEAN NOT NULL
 );
+
+CREATE TABLE award_and_recognition (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    author_id INT,
+    date_granted DATE,
+    FOREIGN KEY (author_id) REFERENCES author (id)
+)AUTO_INCREMENT=1;
 
 CREATE TABLE book (
     id INT PRIMARY KEY AUTO_INCREMENT,
