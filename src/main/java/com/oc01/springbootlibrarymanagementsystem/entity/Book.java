@@ -2,6 +2,7 @@ package com.oc01.springbootlibrarymanagementsystem.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class Book {
     @Column(name="genre")
     private Genre genre;
     @Column(name="date_published", nullable=false)
-    private Date datePublished;
+    private LocalDate datePublished;
     @Enumerated(EnumType.STRING)
     @Column(name="rating")
     private Rating rating;
@@ -46,7 +47,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, List<Author> authors, Genre genre, Date datePublished, Rating rating, int pages, boolean isAvailable, boolean isDeleted) {
+    public Book(String title, List<Author> authors, Genre genre, LocalDate datePublished, Rating rating, int pages, boolean isAvailable, boolean isDeleted) {
         this.title = title;
         this.authors = authors;
         this.genre = genre;
@@ -89,11 +90,11 @@ public class Book {
         this.genre = genre;
     }
 
-    public Date getDatePublished() {
+    public LocalDate getDatePublished() {
         return datePublished;
     }
 
-    public void setDatePublished(Date datePublished) {
+    public void setDatePublished(LocalDate datePublished) {
         this.datePublished = datePublished;
     }
 

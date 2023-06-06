@@ -2,7 +2,7 @@ package com.oc01.springbootlibrarymanagementsystem.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -24,13 +24,13 @@ public class Author {
     private String origin;
 
     @Column(name="date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name="date_of_death")
-    private Date dateOfDeath;
+    private LocalDate dateOfDeath;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<AwardAndRecognition> awardsAndRecognitions;
+    @OneToMany(mappedBy="author", cascade=CascadeType.REMOVE)
+    private List<AwardAndRecognition> awardAndRecognition;
 
     @Column(name="biography")
     private String biography;
@@ -50,7 +50,7 @@ public class Author {
     public Author() {
     }
 
-    public Author(String firstName, String lastName, String origin, Date dateOfBirth, Date dateOfDeath, int totalBooks, boolean isDeleted) {
+    public Author(String firstName, String lastName, String origin, LocalDate dateOfBirth, LocalDate dateOfDeath, int totalBooks, boolean isDeleted) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.origin = origin;
@@ -92,28 +92,28 @@ public class Author {
         this.origin = origin;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Date getDateOfDeath() {
+    public LocalDate getDateOfDeath() {
         return dateOfDeath;
     }
 
-    public void setDateOfDeath(Date dateOfDeath) {
+    public void setDateOfDeath(LocalDate dateOfDeath) {
         this.dateOfDeath = dateOfDeath;
     }
 
     public List<AwardAndRecognition> getAwardsAndRecognitions() {
-        return awardsAndRecognitions;
+        return awardAndRecognition;
     }
 
     public void setAwardsAndRecognitions(List<AwardAndRecognition> awardsAndRecognitions) {
-        this.awardsAndRecognitions = awardsAndRecognitions;
+        this.awardAndRecognition = awardAndRecognition;
     }
 
     public String getBiography() {
@@ -157,10 +157,14 @@ public class Author {
                 ", origin='" + origin + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", dateOfDeath=" + dateOfDeath +
-                ", awardsAndRecognitions=" + awardsAndRecognitions +
+                ", awardsAndRecognitions=" + awardAndRecognition +
                 ", totalBooks=" + totalBooks +
                 ", books=" + books +
                 ", isDeleted=" + isDeleted +
                 '}';
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 }

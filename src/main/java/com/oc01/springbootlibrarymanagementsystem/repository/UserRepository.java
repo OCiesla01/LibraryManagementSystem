@@ -8,5 +8,5 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findAllByOrderByLastNameAsc();
-    List<User> findByLastName();
+    List<User> findByLastName(String lastName);
 }

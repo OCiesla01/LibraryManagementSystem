@@ -2,6 +2,7 @@ package com.oc01.springbootlibrarymanagementsystem.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -22,7 +23,7 @@ public class User {
     @JoinColumn(name="role_id")
     private Role role;
     @Column(name="registered_since", nullable=false)
-    private Date registeredSince;
+    private LocalDate registeredSince;
     @Column(name="total_books_loaned")
     private int totalBooksLoaned;
     @Column(name="books_on_loan")
@@ -33,7 +34,7 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, Role role, Date registeredSince, boolean isDeleted) {
+    public User(String firstName, String lastName, String email, Role role, LocalDate registeredSince, boolean isDeleted) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -82,11 +83,11 @@ public class User {
         this.role = role;
     }
 
-    public Date getRegisteredSince() {
+    public LocalDate getRegisteredSince() {
         return registeredSince;
     }
 
-    public void setRegisteredSince(Date registeredSince) {
+    public void setRegisteredSince(LocalDate registeredSince) {
         this.registeredSince = registeredSince;
     }
 

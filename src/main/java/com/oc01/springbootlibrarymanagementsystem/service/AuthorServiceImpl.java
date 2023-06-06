@@ -2,6 +2,7 @@ package com.oc01.springbootlibrarymanagementsystem.service;
 
 import com.oc01.springbootlibrarymanagementsystem.entity.Author;
 import com.oc01.springbootlibrarymanagementsystem.repository.AuthorRepository;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,13 @@ import java.util.Optional;
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
-    @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private AuthorServiceImpl(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
+
     @Override
     public List<Author> findAll() {
         return authorRepository.findAllByOrderByLastNameAsc();

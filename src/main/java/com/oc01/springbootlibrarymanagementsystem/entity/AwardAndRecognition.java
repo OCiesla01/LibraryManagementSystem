@@ -2,11 +2,12 @@ package com.oc01.springbootlibrarymanagementsystem.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
 @Entity
-@Table(name="awards_and_recognitions")
+@Table(name="award_and_recognition")
 public class AwardAndRecognition {
 
     @Id
@@ -17,13 +18,17 @@ public class AwardAndRecognition {
     @Column(name="name")
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    private Author author;
+
     @Column(name="date_granted")
-    private Date dateGranted;
+    private LocalDate dateGranted;
 
     public AwardAndRecognition() {
     }
 
-    public AwardAndRecognition(String name, Date dateGranted) {
+    public AwardAndRecognition(String name, LocalDate dateGranted) {
         this.name = name;
         this.dateGranted = dateGranted;
     }
@@ -44,11 +49,11 @@ public class AwardAndRecognition {
         this.name = name;
     }
 
-    public Date getDateGranted() {
+    public LocalDate getDateGranted() {
         return dateGranted;
     }
 
-    public void setDateGranted(Date dateGranted) {
+    public void setDateGranted(LocalDate dateGranted) {
         this.dateGranted = dateGranted;
     }
 
