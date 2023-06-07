@@ -20,7 +20,7 @@ public class AwardAndRecognitionServiceImpl implements AwardAndRecognitionServic
 
     @Override
     public List<AwardAndRecognition> findAll() {
-        return awardAndRecognitionRepository.findAll();
+        return awardAndRecognitionRepository.findAllByOrderByNameAsc();
     }
 
     @Override

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Library Management System</title>
+</head>
+<body>
+<div class="container mt-3">
+    <div class="card" style="width: 32rem">
+        <div class="card-body">
+            <h3 class="card-title">Add Award or Recognition</h3>
+            <form action="#" th:action="@{/awards-and-recognitions/save}" th:object="${awardAndRecognition}" method="POST">
+                <input type="hidden" th:field="*{id}">
+                <label for="name">Name:</label>
+                <input type="text" th:field="*{name}" class="form-control mb-3" id="name">
+                <label for="author">Author's ID:</label>
+                <input type="number" th:field="*{author.id}" class="form-control mb-3" id="author">
+                <label for="dateGranted">Date Granted:</label>
+                <input type="date" th:field="*{dateGranted}" class="form-control mb-3" id="dateGranted">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+    <a th:href="@{/awards-and-recognitions/list}" class="btn btn-primary mt-3">Back to Awards & Recognitions</a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

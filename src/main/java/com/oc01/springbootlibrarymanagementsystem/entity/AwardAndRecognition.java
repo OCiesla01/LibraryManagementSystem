@@ -18,7 +18,7 @@ public class AwardAndRecognition {
     @Column(name="name")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="author_id")
     private Author author;
 
@@ -49,6 +49,14 @@ public class AwardAndRecognition {
         this.name = name;
     }
 
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
     public LocalDate getDateGranted() {
         return dateGranted;
     }
@@ -64,5 +72,12 @@ public class AwardAndRecognition {
                 ", name='" + name + '\'' +
                 ", dateGranted=" + dateGranted +
                 '}';
+    }
+
+    public String getAuthorFullName() {
+        if (author != null) {
+            return author.getFullName();
+        }
+        return "Author not known";
     }
 }
