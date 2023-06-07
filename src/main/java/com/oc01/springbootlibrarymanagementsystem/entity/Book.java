@@ -26,6 +26,8 @@ public class Book {
     private Genre genre;
     @Column(name="date_published", nullable=false)
     private LocalDate datePublished;
+    @Column(name="description")
+    private String description;
     @Enumerated(EnumType.STRING)
     @Column(name="rating")
     private Rating rating;
@@ -34,28 +36,26 @@ public class Book {
     @Column(name="is_available", nullable=false)
     private boolean isAvailable;
     @Column(name="row_num")
-    private int row;
+    private Integer row;
     @Column(name="shelf_num")
-    private int shelf;
+    private Integer shelf;
     @Column(name="no_of_copies_in_library")
-    private int copiesInLibrary;
+    private Integer copiesInLibrary;
     @Column(name="no_of_copies_loaned")
-    private int copiesLoaned;
+    private Integer copiesLoaned;
     @Column(name="is_deleted")
     private boolean isDeleted;
 
     public Book() {
     }
 
-    public Book(String title, List<Author> authors, Genre genre, LocalDate datePublished, Rating rating, int pages, boolean isAvailable, boolean isDeleted) {
+    public Book(String title, Genre genre, LocalDate datePublished, String description, Rating rating, int pages) {
         this.title = title;
-        this.authors = authors;
         this.genre = genre;
         this.datePublished = datePublished;
+        this.description = description;
         this.rating = rating;
         this.pages = pages;
-        this.isAvailable = isAvailable;
-        this.isDeleted = isDeleted;
     }
 
     public int getId() {
@@ -98,6 +98,14 @@ public class Book {
         this.datePublished = datePublished;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Rating getRating() {
         return rating;
     }
@@ -122,35 +130,35 @@ public class Book {
         isAvailable = available;
     }
 
-    public int getRow() {
+    public Integer getRow() {
         return row;
     }
 
-    public void setRow(int row) {
+    public void setRow(Integer row) {
         this.row = row;
     }
 
-    public int getShelf() {
+    public Integer getShelf() {
         return shelf;
     }
 
-    public void setShelf(int shelf) {
+    public void setShelf(Integer shelf) {
         this.shelf = shelf;
     }
 
-    public int getCopiesInLibrary() {
+    public Integer getCopiesInLibrary() {
         return copiesInLibrary;
     }
 
-    public void setCopiesInLibrary(int copiesInLibrary) {
+    public void setCopiesInLibrary(Integer copiesInLibrary) {
         this.copiesInLibrary = copiesInLibrary;
     }
 
-    public int getCopiesLoaned() {
+    public Integer getCopiesLoaned() {
         return copiesLoaned;
     }
 
-    public void setCopiesLoaned(int copiesLoaned) {
+    public void setCopiesLoaned(Integer copiesLoaned) {
         this.copiesLoaned = copiesLoaned;
     }
 
@@ -170,6 +178,7 @@ public class Book {
                 ", authors=" + authors +
                 ", genre=" + genre +
                 ", datePublished=" + datePublished +
+                ", description=" + description +
                 ", rating=" + rating +
                 ", pages=" + pages +
                 ", isAvailable=" + isAvailable +
