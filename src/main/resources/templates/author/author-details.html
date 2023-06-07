@@ -9,7 +9,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/997cce5b03.js" crossorigin="anonymous"></script>
   <title>Library Management System</title>
 </head>
 <body>
@@ -21,7 +20,6 @@
         <th>Country</th>
         <th>Date of Birth</th>
         <th>Date of Death</th>
-<!--        <th>Award & Recognitions</th>-->
         <th>Books</th>
       </tr>
     </thead>
@@ -37,16 +35,35 @@
             <p>None</p>
           </span>
         </td>
-        <!--    <h4 th:text="${author.awardAndRecognition}"></h4>-->
         <td th:each="book : ${author.books}">
           <p th:text="${book}"></p>
         </td>
       </tr>
     </tbody>
   </table>
-  <div th:text="${author.biography}">
-
+  <hr>
+  <div th:if="${awardsAndRecognitions.size() > 0}">
+    <h4 class="mt-5">Awards & Recognitions</h4>
+<!--    <a th:href="@{/authors/add-award-or-recognition}" class="btn btn-secondary btn-sm">Add Award or Recognition</a>-->
+    <table class="table table-striped mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Date Granted</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr th:each="awardAndRecognition : ${awardsAndRecognitions}">
+          <td th:text="${awardAndRecognition.name}"></td>
+          <td th:text="${awardAndRecognition.dateGranted}"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+<!--  <hr>-->
+<!--  <p th:text="${author.biography}"></p>-->
+  <br>
+  <hr>
   <a th:href="@{/authors/list}" class="btn btn-warning mt-3">Back to Authors List</a>
 </div>
 

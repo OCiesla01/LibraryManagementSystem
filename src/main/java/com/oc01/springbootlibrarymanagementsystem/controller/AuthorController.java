@@ -1,8 +1,10 @@
 package com.oc01.springbootlibrarymanagementsystem.controller;
 
 import com.oc01.springbootlibrarymanagementsystem.entity.Author;
+import com.oc01.springbootlibrarymanagementsystem.entity.AwardAndRecognition;
 import com.oc01.springbootlibrarymanagementsystem.entity.Book;
 import com.oc01.springbootlibrarymanagementsystem.service.AuthorService;
+import com.oc01.springbootlibrarymanagementsystem.service.AwardAndRecognitionService;
 import com.oc01.springbootlibrarymanagementsystem.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,17 +31,19 @@ public class AuthorController {
         List<Author> authors = authorService.findAll();
         model.addAttribute("authors", authors);
 
-        return "authors/authors-list";
+        return "author/authors-list";
     }
 
     @GetMapping("/{authorId}")
     private String authorDetails(@PathVariable("authorId") int authorId, Model model) {
         Author author = authorService.findById(authorId);
         String authorFullName = author.getFullName();
+        List<AwardAndRecognition> awardsAndRecognitions = author.getAwardsAndRecognitions();
         model.addAttribute("author", author);
         model.addAttribute("authorFullName", authorFullName);
+        model.addAttribute("awardsAndRecognitions", awardsAndRecognitions);
 
-        return "authors/author-details";
+        return "author/author-details";
     }
 
     @GetMapping("/create-author-form")
@@ -47,7 +51,7 @@ public class AuthorController {
         Author author = new Author();
         model.addAttribute("author", author);
 
-        return "authors/author-form";
+        return "author/author-form";
     }
 
     @GetMapping("/update-author-form")
@@ -55,7 +59,7 @@ public class AuthorController {
         Author author = authorService.findById(authorId);
         model.addAttribute("author", author);
 
-        return "authors/author-form";
+        return "author/author-form";
     }
 
     @GetMapping("/update-author-details-form")
@@ -65,7 +69,7 @@ public class AuthorController {
         model.addAttribute("author", author);
         model.addAttribute("booksList", booksList);
 
-        return "authors/author-details-form";
+        return "author/author-details-form";
     }
 
     @GetMapping("/delete")
@@ -74,6 +78,7 @@ public class AuthorController {
 
         return "redirect:/authors/list";
     }
+
 
     @PostMapping("/save")
     private String saveAuthor(@ModelAttribute("author") Author author) {
