@@ -84,7 +84,6 @@ public class AuthorController {
         return "redirect:/authors/list";
     }
 
-
     @PostMapping("/save")
     private String saveAuthor(@ModelAttribute("author") Author author) {
         authorService.save(author);

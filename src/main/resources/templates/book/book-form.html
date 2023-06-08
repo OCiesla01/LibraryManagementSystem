@@ -28,7 +28,7 @@
         </select>
         <br>
         <label for="datePublished">Publish Date:</label>
-        <input type="date" th:field="*{datePublished}" class="form-control mb-3" id="datePublished">
+        <input type="date" th:field="*{datePublished}" class="form-control mb-3" id="datePublished" th:value="${#dates.format(book.datePublished, 'yyyy-MM-dd')}">
         <label for="description">Description:</label>
         <input type="text" th:field="*{description}" class="form-control mb-3" id="description">
         <label for="rating">Rating:</label>
@@ -40,6 +40,14 @@
         <br>
         <label for="pages">No. of Pages:</label>
         <input type="number" th:field="*{pages}" class="form-control mb-3" id="pages">
+        <label for="row">Row No.</label>
+        <input type="number" th:field="*{row}" class="form-control mb-3" id="row">
+        <label for="shelf">Shelf No.</label>
+        <input type="number" th:field="*{shelf}" class="form-control mb-3" id="shelf">
+        <label for="copiesInLibrary">Copies in Library</label>
+        <input type="number" th:field="*{copiesInLibrary}" class="form-control mb-3" id="copiesInLibrary">
+        <label for="copiesLoaned">Copies Loaned</label>
+        <input type="number" th:field="*{copiesLoaned}" class="form-control mb-3" id="copiesLoaned">
         <button type="submit" class="btn btn-success">Submit</button>
       </form>
     </div>

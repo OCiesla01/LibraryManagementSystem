@@ -2,7 +2,6 @@ package com.oc01.springbootlibrarymanagementsystem.service;
 
 import com.oc01.springbootlibrarymanagementsystem.entity.Author;
 import com.oc01.springbootlibrarymanagementsystem.repository.AuthorRepository;
-import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

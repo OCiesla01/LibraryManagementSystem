@@ -2,6 +2,7 @@ package com.oc01.springbootlibrarymanagementsystem.controller;
 
 import com.oc01.springbootlibrarymanagementsystem.entity.Author;
 import com.oc01.springbootlibrarymanagementsystem.entity.Book;
+import com.oc01.springbootlibrarymanagementsystem.service.AuthorService;
 import com.oc01.springbootlibrarymanagementsystem.service.BookService;
 import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,13 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private BookService bookService;
+    private final BookService bookService;
+    private final AuthorService authorService;
 
     @Autowired
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, AuthorService authorService) {
         this.bookService = bookService;
+        this.authorService = authorService;
     }
 
     @GetMapping("/list")
@@ -49,7 +52,7 @@ public class BookController {
     }
 
     @GetMapping("/update-book")
-    private String saveBook(@RequestParam("bookId") int bookId, Model model) {
+    private String updateBook(@RequestParam("bookId") int bookId, Model model) {
         Book book = bookService.findById(bookId);
         model.addAttribute("book", book);
 
@@ -65,6 +68,27 @@ public class BookController {
 
     @PostMapping("/save")
     private String saveBook(@ModelAttribute("book") Book book) {
+        bookService.save(book);
+
+        return "redirect:/books/list";
+    }
+
+    @GetMapping("/author-form")
+    private String addAuthorToBook(@RequestParam("bookId") int bookId, Model model) {
+        Book book = bookService.findById(bookId);
+        List<Author> authors = authorService.findAll();
+        model.addAttribute("book", book);
+        model.addAttribute("authors", authors);
+
+        return "book/book-author-form";
+    }
+
+    @PostMapping("/save-book-author")
+    private String saveAuthorToBook(
+            @ModelAttribute("book") Book book,
+            @RequestParam("authorId") int authorId) {
+        Author author = authorService.findById(authorId);
+        book.addAuthor(author);
         bookService.save(book);
 
         return "redirect:/books/list";

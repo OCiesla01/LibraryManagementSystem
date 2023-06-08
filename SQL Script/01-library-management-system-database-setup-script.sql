@@ -35,7 +35,7 @@ CREATE TABLE author (
     is_deleted BOOLEAN NOT NULL
 );
 
-CREATE TABLE award_and_recognition (
+CREATE TABLE award (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     author_id INT,
@@ -48,6 +48,7 @@ CREATE TABLE book (
     title VARCHAR(255) NOT NULL,
     genre VARCHAR(255),
     date_published DATE NOT NULL,
+    description VARCHAR(1000),
     rating VARCHAR(255),
     no_of_pages INT,
     is_available BOOLEAN NOT NULL,
