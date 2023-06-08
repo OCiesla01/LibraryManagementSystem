@@ -15,25 +15,22 @@
 <div class="container mt-3">
   <div class="card" style="width: 32rem">
     <div class="card-body">
-      <h3 class="card-title">Add Author</h3>
-      <hr>
-      <form action="#" th:action="@{/authors/save}" th:object="${author}" method="POST">
+      <h3 class="card-title">New User</h3>
+      <form action="#" th:action="@{/users/save}" th:object="${user}" method="POST">
         <input type="hidden" th:field="*{id}">
-        <label for="bio">Add Biography:</label>
-        <input type="text" th:field="*{biography}" class="form-control mb-2" id="bio">
-        <br>
-        <label for="books">Add Book (by ID):</label>
-        <input type="number" th:field="*{books}" class="form-control mb-2" id="books">
-        <br>
-        <label for="aar">Add Award or Recognition (by ID):</label>
-        <input type="number" th:field="*{awardAndRecognition}" class="form-control mb-2" id="aar">
-        <br>
-        <button type="submit" class="btn btn-success mt-3">Submit</button>
+        <label for="firstName">First Name:</label>
+        <input type="text" th:field="*{firstName}" class="form-control" id="firstName">
+        <label for="lastName">Last Name:</label>
+        <input type="text" th:field="*{lastName}" class="form-control" id="lastName">
+        <label for="email">Email:</label>
+        <input type="email" th:field="*{email}" class="form-control" id="email">
+        <button type="submit" class="btn btn-success mt-2">Submit</button>
       </form>
     </div>
   </div>
-  <a th:href="@{/authors/list}" class="btn btn-warning mt-3">Back to Authors List</a>
+  <a th:href="@{/users/list}" class="btn btn-warning mt-3">Back to Users List</a>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>

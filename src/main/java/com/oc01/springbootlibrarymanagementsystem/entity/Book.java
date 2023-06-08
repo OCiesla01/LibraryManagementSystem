@@ -182,7 +182,6 @@ public class Book {
                 ", rating=" + rating +
                 ", pages=" + pages +
                 ", isAvailable=" + isAvailable +
-                ", isDeleted=" + isDeleted +
                 '}';
     }
 }

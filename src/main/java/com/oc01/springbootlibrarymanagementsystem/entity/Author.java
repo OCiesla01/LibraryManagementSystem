@@ -3,6 +3,7 @@ package com.oc01.springbootlibrarymanagementsystem.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,14 +30,11 @@ public class Author {
     @Column(name="date_of_death")
     private LocalDate dateOfDeath;
 
-    @OneToMany(mappedBy="author", cascade=CascadeType.REMOVE)
-    private List<AwardAndRecognition> awardAndRecognition;
+    @OneToMany(mappedBy="author", cascade=CascadeType.ALL)
+    private List<Award> awards = new ArrayList<>();
 
     @Column(name="biography")
     private String biography;
-
-    @Column(name="total_books")
-    private int totalBooks;
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(name = "author_book",
@@ -50,13 +48,12 @@ public class Author {
     public Author() {
     }
 
-    public Author(String firstName, String lastName, String origin, LocalDate dateOfBirth, LocalDate dateOfDeath, int totalBooks, boolean isDeleted) {
+    public Author(String firstName, String lastName, String origin, LocalDate dateOfBirth, LocalDate dateOfDeath, boolean isDeleted) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.origin = origin;
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = dateOfDeath;
-        this.totalBooks = totalBooks;
         this.isDeleted = isDeleted;
     }
 
@@ -108,12 +105,13 @@ public class Author {
         this.dateOfDeath = dateOfDeath;
     }
 
-    public List<AwardAndRecognition> getAwardsAndRecognitions() {
-        return awardAndRecognition;
+    public List<Award> getAwards() {
+        return awards;
     }
 
-    public void setAwardsAndRecognitions(List<AwardAndRecognition> awardsAndRecognitions) {
-        this.awardAndRecognition = awardAndRecognition;
+    public void addAward(Award award) {
+        awards.add(award);
+        award.setAuthor(this);
     }
 
     public String getBiography() {
@@ -122,14 +120,6 @@ public class Author {
 
     public void setBiography(String biography) {
         this.biography = biography;
-    }
-
-    public int getTotalBooks() {
-        return totalBooks;
-    }
-
-    public void setTotalBooks(int totalBooks) {
-        this.totalBooks = totalBooks;
     }
 
     public List<Book> getBooks() {
@@ -157,10 +147,6 @@ public class Author {
                 ", origin='" + origin + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", dateOfDeath=" + dateOfDeath +
-                ", awardsAndRecognitions=" + awardAndRecognition +
-                ", totalBooks=" + totalBooks +
-                ", books=" + books +
-                ", isDeleted=" + isDeleted +
                 '}';
     }
 

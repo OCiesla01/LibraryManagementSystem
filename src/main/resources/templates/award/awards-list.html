@@ -13,9 +13,8 @@
 </head>
 <body>
 <div class="container mt-3">
-  <h2>Awards & Recognitions Directory</h2>
+  <h2>Awards Directory</h2>
   <hr>
-  <a th:href="@{/awards-and-recognitions/create-award-and-recognition-form}" class="btn btn-primary">Add Award or Recognition</a>
   <table class="table table-striped table-hover my-3">
     <thead class="table-dark">
       <tr>
@@ -26,16 +25,14 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
-      <tr th:each="awardAndRecognition : ${awardsAndRecognitions}">
-        <td th:text="${awardAndRecognition.name}"></td>
-        <td th:text="${awardAndRecognition.getAuthorFullName}"></td>
-        <td th:text="${awardAndRecognition.dateGranted}"></td>
+      <tr th:each="award : ${awards}">
+        <td th:text="${award.name}"></td>
+        <td th:text="${award.getAuthorFullName}"></td>
+        <td th:text="${award.dateGranted}"></td>
         <td>
-          <a th:href="@{/awards-and-recognitions/update-award-and-recognition-from(awardAndRecognitionId=${awardAndRecognition.id})}"
-             class="btn btn-warning">Update</a>
-          <a th:href="@{/awards-and-recognitions/delete(awardAndRecognitionId=${awardAndRecognition.id})}"
-             class="btn btn-danger"
-             onclick="if (!(confirm('Are you sure you want to delete this Award or Recognition?'))) return false">Delete</a>
+          <a th:href="@{/awards/update-award(awardId=${award.id})}" class="btn btn-warning btn-sm">Update</a>
+          <a th:href="@{/awards/delete(awardId=${award.id})}" class="btn btn-danger btn-sm"
+             onclick="if (!(confirm('Are you sure you want to delete this Award?'))) return false">Delete</a>
         </td>
       </tr>
     </tbody>

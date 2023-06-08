@@ -21,7 +21,6 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Origin</th>
-                <th>Total books</th>
                 <th>More Information</th>
                 <th>Action</th>
             </tr>
@@ -31,7 +30,6 @@
                 <td th:text="${author.firstName}"></td>
                 <td th:text="${author.lastName}"></td>
                 <td th:text="${author.origin}"></td>
-                <td th:text="${author.totalBooks}"></td>
                 <td>
                     <a th:href="@{/authors/{authorId}(authorId=${author.id})}"
                        class="btn btn-info btn-sm">Details

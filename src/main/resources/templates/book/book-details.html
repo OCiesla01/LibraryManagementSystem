@@ -19,9 +19,9 @@
         <h2 class="card-title" th:text="'\'' + ${book.title} + '\''"></h2>
         <hr>
       </div>
-      <p>Authors:</p>
+      <h5>Authors:</h5>
       <span th:each="author : ${authors}">
-        <p th:text="${author.getFullName}"></p>
+        <p th:text="${author.getFullName()}"></p>
       </span>
       <hr>
       <h5>Genre & Rating</h5>

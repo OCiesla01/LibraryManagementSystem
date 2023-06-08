@@ -1,5 +1,6 @@
 package com.oc01.springbootlibrarymanagementsystem.controller;
 
+import com.oc01.springbootlibrarymanagementsystem.entity.Author;
 import com.oc01.springbootlibrarymanagementsystem.entity.Book;
 import com.oc01.springbootlibrarymanagementsystem.service.BookService;
 import org.springframework.beans.PropertyEditorRegistrar;
@@ -32,7 +33,9 @@ public class BookController {
     @GetMapping("/{bookId}")
     private String bookDetails(@PathVariable("bookId") int bookId, Model model) {
         Book book = bookService.findById(bookId);
+        List<Author> authors = book.getAuthors();
         model.addAttribute("book", book);
+        model.addAttribute("authors", authors);
 
         return "book/book-details";
     }

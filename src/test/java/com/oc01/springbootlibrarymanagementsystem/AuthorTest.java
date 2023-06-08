@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class AuthorTest {
 
 	Author author = new Author(
-			"Hilary", "Smith", "USA", null, null, 12, false);
+			"Hilary", "Smith", "USA", null, null, false);
 
 	@Test
 	public void testEmptyConstructor_ReturnsTrue() {
@@ -32,8 +32,7 @@ class AuthorTest {
 				", origin='" + author.getOrigin() + '\'' +
 				", dateOfBirth=" + author.getDateOfBirth() +
 				", dateOfDeath=" + author.getDateOfDeath() +
-				", awardsAndRecognitions=" + author.getAwardsAndRecognitions() +
-				", totalBooks=" + author.getTotalBooks() +
+				", awardsAndRecognitions=" + author.getAwards() +
 				", books=" + author.getBooks() +
 				", isDeleted=" + author.isDeleted() +
 				'}', author.toString());

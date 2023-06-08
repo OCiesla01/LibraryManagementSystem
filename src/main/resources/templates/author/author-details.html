@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container mt-3">
-  <h2 th:text="${authorFullName}" class="mt-3"></h2>
+  <h2 th:text="${author.getFullName}" class="mt-3"></h2>
   <table class="table table-striped mt-3">
     <thead class="table-dark">
       <tr>
@@ -35,16 +35,16 @@
             <p>None</p>
           </span>
         </td>
-        <td th:each="book : ${author.books}">
-          <p th:text="${book}"></p>
+        <td>
+          <span th:each="book : ${author.books}">
+            <p th:text="${book.title}"></p>
+          </span>
         </td>
       </tr>
     </tbody>
   </table>
-  <hr>
-  <div th:if="${awardsAndRecognitions.size() > 0}">
-    <h4 class="mt-5">Awards & Recognitions</h4>
-<!--    <a th:href="@{/authors/add-award-or-recognition}" class="btn btn-secondary btn-sm">Add Award or Recognition</a>-->
+  <div th:if="${awards != null}">
+    <h4 class="mt-5">Awards</h4>
     <table class="table table-striped mt-3">
       <thead class="table-dark">
         <tr>
@@ -53,15 +53,24 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr th:each="awardAndRecognition : ${awardsAndRecognitions}">
-          <td th:text="${awardAndRecognition.name}"></td>
-          <td th:text="${awardAndRecognition.dateGranted}"></td>
+        <tr th:each="award : ${awards}">
+          <td th:text="${award.name}"></td>
+          <td th:text="${award.dateGranted}"></td>
         </tr>
       </tbody>
     </table>
   </div>
-<!--  <hr>-->
-<!--  <p th:text="${author.biography}"></p>-->
+  <a th:href="@{/authors/award-form(authorId=${author.id})}" class="btn btn-primary btn-sm">Add Award</a>
+  <hr>
+  <div>
+    <span th:if="${author.biography == null}">
+      <p>No Biography Added</p>
+    </span>
+    <span th:if="${author.biography != null}">
+      <p th:text="${author.biography}"></p>
+    </span>
+
+  </div>
   <br>
   <hr>
   <a th:href="@{/authors/list}" class="btn btn-warning mt-3">Back to Authors List</a>

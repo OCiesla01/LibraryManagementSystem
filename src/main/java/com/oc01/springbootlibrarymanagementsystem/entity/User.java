@@ -43,6 +43,10 @@ public class User {
         this.isDeleted = isDeleted;
     }
 
+    public User(Role role) {
+        this.role = role;
+    }
+
     public int getId() {
         return id;
     }
@@ -126,7 +130,10 @@ public class User {
                 ", registeredSince=" + registeredSince +
                 ", totalBooksLoaned=" + totalBooksLoaned +
                 ", currentBooksLoaned=" + currentBooksLoaned +
-                ", isDeleted=" + isDeleted +
                 '}';
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 }

@@ -3,12 +3,11 @@ package com.oc01.springbootlibrarymanagementsystem.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 
 @Entity
-@Table(name="award_and_recognition")
-public class AwardAndRecognition {
+@Table(name="award")
+public class Award {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -25,11 +24,17 @@ public class AwardAndRecognition {
     @Column(name="date_granted")
     private LocalDate dateGranted;
 
-    public AwardAndRecognition() {
+    public Award() {
     }
 
-    public AwardAndRecognition(String name, LocalDate dateGranted) {
+    public Award(String name, LocalDate dateGranted) {
         this.name = name;
+        this.dateGranted = dateGranted;
+    }
+
+    public Award(String name, Author author, LocalDate dateGranted) {
+        this.name = name;
+        this.author = author;
         this.dateGranted = dateGranted;
     }
 
@@ -55,6 +60,7 @@ public class AwardAndRecognition {
 
     public void setAuthor(Author author) {
         this.author = author;
+        author.getAwards().add(this);
     }
 
     public LocalDate getDateGranted() {
@@ -67,7 +73,7 @@ public class AwardAndRecognition {
 
     @Override
     public String toString() {
-        return "AwardAndRecognition{" +
+        return "Award{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dateGranted=" + dateGranted +
