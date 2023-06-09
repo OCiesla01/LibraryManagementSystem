@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService {
     public void deleteById(int id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public List<User> getUsersByRole(String roleName) {
+        return userRepository.findUsersByRole(roleName);
+    }
 }

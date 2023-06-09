@@ -30,7 +30,7 @@ CREATE TABLE author (
     origin VARCHAR(255),
     date_of_birth DATE,
     date_of_death DATE,
-    biography VARCHAR(255),
+    biography VARCHAR(2000),
     total_books INT,
     is_deleted BOOLEAN NOT NULL
 );
@@ -51,7 +51,7 @@ CREATE TABLE book (
     description VARCHAR(1000),
     rating VARCHAR(255),
     no_of_pages INT,
-    is_available BOOLEAN NOT NULL,
+    is_available BOOLEAN,
     row_num INT,
     shelf_num INT,
     no_of_copies_in_library INT,

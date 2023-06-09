@@ -28,12 +28,12 @@ public class Book {
     private LocalDate datePublished;
     @Column(name="description")
     private String description;
-    @Enumerated(EnumType.STRING)
+
     @Column(name="rating")
-    private Rating rating;
+    private double rating;
     @Column(name="no_of_pages")
     private int pages;
-    @Column(name="is_available", nullable=false)
+    @Column(name="is_available")
     private boolean isAvailable;
     @Column(name="row_num")
     private Integer row;
@@ -49,7 +49,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, Genre genre, LocalDate datePublished, String description, Rating rating, int pages) {
+    public Book(String title, Genre genre, LocalDate datePublished, String description, double rating, int pages) {
         this.title = title;
         this.genre = genre;
         this.datePublished = datePublished;
@@ -106,11 +106,11 @@ public class Book {
         this.description = description;
     }
 
-    public Rating getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(Rating rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 

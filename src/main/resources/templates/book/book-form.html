@@ -28,16 +28,11 @@
         </select>
         <br>
         <label for="datePublished">Publish Date:</label>
-        <input type="date" th:field="*{datePublished}" class="form-control mb-3" id="datePublished" th:value="${#dates.format(book.datePublished, 'yyyy-MM-dd')}">
+        <input type="date" th:field="*{datePublished}" class="form-control mb-3" id="datePublished">
         <label for="description">Description:</label>
         <input type="text" th:field="*{description}" class="form-control mb-3" id="description">
         <label for="rating">Rating:</label>
-        <br>
-        <select id="rating" name="rating">
-          <option th:each="rating : ${T(com.oc01.springbootlibrarymanagementsystem.entity.Rating).values()}"
-                  th:value="${rating}" th:text="${rating}"></option>
-        </select>
-        <br>
+        <input type="number" step="0.1" th:field="*{rating}" class="form-control mb-3" id="rating">
         <label for="pages">No. of Pages:</label>
         <input type="number" th:field="*{pages}" class="form-control mb-3" id="pages">
         <label for="row">Row No.</label>

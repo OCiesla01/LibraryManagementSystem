@@ -5,6 +5,7 @@ import com.oc01.springbootlibrarymanagementsystem.entity.User;
 import com.oc01.springbootlibrarymanagementsystem.service.RoleService;
 import com.oc01.springbootlibrarymanagementsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -96,5 +97,18 @@ public class UserController {
         userService.save(user);
 
         return "redirect:/users/list";
+    }
+
+    @GetMapping("/by-roles-{roleName}")
+    public String getUsersByRole(@PathVariable("roleName") String roleName, Model model) {
+        List<User> users = userService.getUsersByRole(roleName);
+        if (users.get(0) != null) {
+            Role role = users.get(0).getRole();
+            model.addAttribute("role", role);
+        }
+        model.addAttribute("users", users);
+
+
+        return "user/users-role-list";
     }
 }

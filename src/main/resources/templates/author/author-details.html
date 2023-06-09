@@ -32,7 +32,7 @@
             <p th:text="${author.dateOfDeath}"></p>
           </span>
           <span th:unless="${author.dateOfDeath != null}">
-            <p>None</p>
+            <p>--------</p>
           </span>
         </td>
         <td>
@@ -67,12 +67,10 @@
       <p>No Biography Added</p>
     </span>
     <span th:if="${author.biography != null}">
-      <p th:text="${author.biography}"></p>
+      <h6 th:text="${author.biography}" style="font-style: italic;"></h6>
     </span>
-
   </div>
   <br>
-  <hr>
   <a th:href="@{/authors/list}" class="btn btn-warning mt-3">Back to Authors List</a>
 </div>
 

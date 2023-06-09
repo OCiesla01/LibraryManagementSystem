@@ -68,6 +68,11 @@ public class BookController {
 
     @PostMapping("/save")
     private String saveBook(@ModelAttribute("book") Book book) {
+        if (book.getCopiesInLibrary() > 0) {
+            book.setAvailable(true);
+        } else {
+            book.setAvailable(false);
+        }
         bookService.save(book);
 
         return "redirect:/books/list";

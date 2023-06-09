@@ -20,14 +20,16 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-<!--        <th>List</th>-->
+        <th>List of Users with Role</th>
       </tr>
     </thead>
     <tbody class="table-group-divider">
       <tr th:each="role : ${roles}">
         <td th:text="${role.id}"></td>
         <td th:text="${role.name}"></td>
-<!--        <td th:text=""></td>-->
+        <td>
+          <a th:href="@{/users/by-roles-{roleName}(roleName=${role.name})}" th:text="${role.name} + 'S' + ' ' + 'List'" class="btn btn-info btn-sm"></a>
+        </td>
       </tr>
     </tbody>
   </table>

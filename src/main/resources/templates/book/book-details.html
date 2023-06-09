@@ -26,7 +26,7 @@
       <a th:href="@{/books/author-form(bookId=${book.id})}" class="btn btn-secondary btn-sm">Add Author</a>
       <hr>
       <h5>Genre & Rating</h5>
-      <p th:text="${book.genre + ' | ' + book.rating.getValue()}"></p>
+      <p th:text="${book.genre + ' | ' + book.rating}"></p>
       <hr>
       <h5>Publish Date</h5>
       <p th:text="${book.datePublished}"></p>

@@ -31,7 +31,7 @@
       <tr th:each="book : ${books}">
         <td><a th:href="@{/books/{bookId}(bookId=${book.id})}" th:text="${book.title}"></a></td>
         <td th:text="${book.genre}"></td>
-        <td th:text="${book.rating.value}"></td>
+        <td th:text="${book.rating}"></td>
         <td th:text="${book.isAvailable == true && book.copiesInLibrary > 0 ? 'Available' : 'Not Available'}"></td>
         <td th:text="${book.copiesInLibrary > 0 ? book.copiesInLibrary : '0'}"></td>
         <td>
